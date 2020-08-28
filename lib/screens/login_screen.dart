@@ -9,6 +9,10 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
 
+
+  /*
+  * Metodo para construir el textfield del correo
+  * */
   _buildEmailTF(){
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text(
@@ -28,7 +32,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 border:InputBorder.none,
                 contentPadding: EdgeInsets.only(top:14.0),
                 prefixIcon: Icon(Icons.email , color: Colors.white),
-                hintText: 'Introduce tu e-mail',
+                hintText: 'Introduce tu correo',
                 hintStyle: kHintTextStyle
             ),
           )
@@ -37,6 +41,36 @@ class _LoginScreenState extends State<LoginScreen> {
       //Container(alignment: Alignment.centerLeft ,)
 
     ],);
+  }
+
+  _buildPasswordTF(){
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Text(
+        'Contraseña',
+        style: kLabelStyle,
+      ),
+      SizedBox(height: 10.0),
+
+      Container(
+          alignment: Alignment.centerLeft,
+          decoration: kBoxDecorationStyle,
+          height: 60.0,
+          child:TextField(
+            obscureText: true,
+            style: TextStyle(color:Colors.white),
+            decoration: InputDecoration(
+                border:InputBorder.none,
+                contentPadding: EdgeInsets.only(top:14.0),
+                prefixIcon: Icon(Icons.lock , color: Colors.white),
+                hintText: 'Introduce tu contraseña',
+                hintStyle: kHintTextStyle
+            ),
+          )
+      )
+
+      //Container(alignment: Alignment.centerLeft ,)
+
+    ]);
   }
 
 
@@ -79,8 +113,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
                 SizedBox(height: 30.0),
                 //Llamamos al método para construir el textfield de email
-                _buildEmailTF()
-
+                _buildEmailTF(),
+                SizedBox(height: 30.0),
+                _buildPasswordTF()
               ],
             )
           )
