@@ -8,6 +8,38 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+
+  _buildEmailTF(){
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Text(
+        'Correo',
+        style: kLabelStyle,
+      ),
+      SizedBox(height: 10.0),
+
+      Container(
+          alignment: Alignment.centerLeft,
+          decoration: kBoxDecorationStyle,
+          height: 60.0,
+          child:TextField(
+            keyboardType: TextInputType.emailAddress,
+            style: TextStyle(color:Colors.white),
+            decoration: InputDecoration(
+                border:InputBorder.none,
+                contentPadding: EdgeInsets.only(top:14.0),
+                prefixIcon: Icon(Icons.email , color: Colors.white),
+                hintText: 'Introduce tu e-mail',
+                hintStyle: kHintTextStyle
+            ),
+          )
+      )
+
+      //Container(alignment: Alignment.centerLeft ,)
+
+    ],);
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,34 +78,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 )),
 
                 SizedBox(height: 30.0),
-
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  Text(
-                    'Correo',
-                    style: kLabelStyle,
-                  ),
-                  SizedBox(height: 10.0),
-
-                  Container(
-                    alignment: Alignment.centerLeft,
-                    decoration: kBoxDecorationStyle,
-                    height: 60.0,
-                    child:TextField(
-                      keyboardType: TextInputType.emailAddress,
-                      style: TextStyle(color:Colors.white),
-                      decoration: InputDecoration(
-                        border:InputBorder.none,
-                        contentPadding: EdgeInsets.only(top:14.0),
-                        prefixIcon: Icon(Icons.email , color: Colors.white),
-                        hintText: 'Introduce tu e-mail',
-                        hintStyle: kHintTextStyle
-                      ),
-                    )
-                  )
-
-                  //Container(alignment: Alignment.centerLeft ,)
-
-                ],)
+                //Llamamos al método para construir el textfield de email
+                _buildEmailTF()
 
               ],
             )
