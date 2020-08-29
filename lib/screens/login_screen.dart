@@ -10,10 +10,12 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
 
 
+  bool _recuerdame = false;
+
   /*
   * Metodo para construir el textfield del correo
   * */
-  _buildEmailTF(){
+  Widget _buildEmailTF(){
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text(
         'Correo',
@@ -43,7 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
     ],);
   }
 
-  _buildPasswordTF(){
+  Widget _buildPasswordTF(){
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text(
         'Contraseña',
@@ -71,6 +73,17 @@ class _LoginScreenState extends State<LoginScreen> {
       //Container(alignment: Alignment.centerLeft ,)
 
     ]);
+  }
+
+  Widget _buildForgotPasswordTF(){
+    return Container(
+        alignment: Alignment.centerRight,
+        child: FlatButton(
+            onPressed: () => print("Pulsado boton olvide contraseña"),
+            child: Text("¿Olvidó Contraseña?",
+                style: kLabelStyle)
+        )
+    );
   }
 
 
@@ -115,7 +128,29 @@ class _LoginScreenState extends State<LoginScreen> {
                 //Llamamos al método para construir el textfield de email
                 _buildEmailTF(),
                 SizedBox(height: 30.0),
-                _buildPasswordTF()
+                _buildPasswordTF(),
+                SizedBox(height: 10.0,),
+                _buildForgotPasswordTF(),
+                Container(
+                  child: Row(
+                    children: [
+                      Theme(
+                          data:ThemeData(unselectedWidgetColor: Colors.white ),
+                          child: Checkbox(
+                            value: _recuerdame,
+                            checkColor: Colors.green,
+                            activeColor: Colors.white,
+                            onChanged: (value){
+                              setState(() {
+                                _recuerdame = value;
+                              });
+                            },
+                          )
+                      ),
+                      Text('Recuerdame')
+                    ],
+                  )
+                )
               ],
             )
           )
