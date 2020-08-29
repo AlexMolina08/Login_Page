@@ -130,6 +130,58 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
+  Widget _buildSignInWithText(){
+    return Column(
+      children: [
+        Text("- O - " , style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500)),
+        SizedBox(height:20.0),
+        Text("Entra con" , style: kLabelStyle,)
+      ],
+    );
+  }
+
+  Widget _buildSocialButton(Function onTap , AssetImage logo){
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+          height: 60.0,
+          width: 60.0,
+          decoration: BoxDecoration(
+              shape: BoxShape.circle ,
+              color: Colors.white ,
+              boxShadow: [BoxShadow(
+                  color:Colors.black26,
+                  offset: Offset(0, 2),
+                  blurRadius: 6.0
+              ),
+              ],
+              image: DecorationImage(image: logo)
+          )
+      ),
+    );
+  }
+
+
+  Widget _buildSocialButtonRow(){
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical:30.0),
+      child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            _buildSocialButton(
+                    () => print("logeado con facebook"),
+                AssetImage("assets/images/facebook.jpg")
+            ), //funcion que construye un Gesture detector de un icono de una red social
+
+            _buildSocialButton(
+                    () => print("logeado con Google"),
+                AssetImage("assets/images/google.png")
+            )
+
+          ]
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -160,7 +212,7 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('Registro',
+                Text('Entrar',
                 style: TextStyle(
                   color: Colors.white,
                   fontFamily: 'OpenSans',
@@ -171,12 +223,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(height: 30.0),
                 //Llamamos al método para construir el textfield de email
                 _buildEmailTF(),
-                SizedBox(height: 30.0),
+                SizedBox(height: 20.0),
                 _buildPasswordTF(),
-                SizedBox(height: 10.0,),
+                //SizedBox(height: 10.0,),
                 _buildForgotPasswordTF(),
-                _buildRememberMeCheckBox(),
+                //_buildRememberMeCheckBox(),
                 _buildLoginButton(),
+                _buildSignInWithText(),
+                _buildSocialButtonRow()
               ],
             )
           )
